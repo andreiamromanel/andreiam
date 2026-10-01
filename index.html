@@ -92,6 +92,12 @@
   #won[hidden] { display: none; }
   #won h1 { margin: 0; }
   #start .hello { font-size: 1.6rem; line-height: 1.45; color: var(--blush); font-style: normal; margin: -6px 0 6px; }
+  #start .mission { text-align: left; font-size: 1.25rem; line-height: 1.5; color: var(--blush); text-shadow: 0 2px 14px rgba(20,8,26,.85); }
+  #start .mission strong { display: block; font-weight: 500; color: var(--rose); font-size: 1.35rem; margin-bottom: 4px; text-align: center; }
+  #start .mission ul { list-style: none; margin: 0; padding: 0; }
+  #start .ready { margin: 0; font-size: 1.5rem; color: var(--rose); font-style: italic; text-shadow: 0 2px 14px rgba(20,8,26,.85); }
+  #intro:not(.playing) { overflow-y: auto; justify-content: safe center; }
+  #start { gap: 16px; padding: 12px 0; }
   #start .how { font-size: 1.3rem; line-height: 1.5; color: var(--blush); font-style: normal; max-width: 22em; }
   #start .how b { color: var(--rose); font-weight: 500; }
   .play {
@@ -186,9 +192,18 @@
   <canvas id="game" aria-hidden="true"></canvas>
   <div id="hud" aria-live="polite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8 3 4.5 6.6 4.5c2 0 3.700 1 5.400 3 1.700-2 3.400-3 5.400-3C21 4.500 23.100 8 21.600 11.700 19.500 16.400 12 21 12 21z"/></svg><span id="score">0</span>/<span id="goal">10</span></div>
   <div id="start">
-    <h1>Ei, Tharles</h1>
-    <p class="hello">Como você está?<br>Tenho uma carta aberta para você.</p>
-    <p class="how">Antes de abrir, um voo rápido.<br>Arraste para os lados e pegue <b>10 corações</b>.<br>Desvie das nuvens de tempestade.</p>
+    <h1>Ei, Tharles!</h1>
+    <p class="hello">Como você está?</p>
+    <p class="how">Antes de continuar, você precisa cumprir uma pequena missão.<br>Afinal, alguns voos valem a pena justamente pelos desafios no caminho. 😉🪂❤️</p>
+    <div class="mission">
+      <strong>Sua missão:</strong>
+      <ul>
+        <li>❤️ Pegue os 10 corações</li>
+        <li>⛈️ Desvie das nuvens de tempestade</li>
+        <li>🪂 E chegue inteiro até o final!</li>
+      </ul>
+    </div>
+    <p class="ready">Vamos lá piloto?</p>
     <button class="play" id="play">Jogar</button>
   </div>
   <div id="won" hidden><h1>Você conseguiu</h1><p>Sua carta está chegando…</p></div>
@@ -225,52 +240,37 @@
     caption: "A | T",
     to: "Carta Aberta ❤️",
     paragraphs: [
-      "Ei, bom dia, boa tarde ou boa noite!!!",
-      "Fala comigo, meu amor... rsrs",
-      "Tudo bem com você? Como você está?",
-      "Sinto saudade de ouvir essas frases...",
-      "Talvez você esteja começando a ler esta carta em um dia corrido, no trabalho, na roça, com pouco sinal, ou mesmo em casa, já quase dormindo... A verdade é que espero que você leia até o final e, se for preciso, leia mais de uma vez...",
-      "Eu não sabia que o dia 7 de junho de 2026 mudaria tanto a minha cabeça.",
-      "Não sabia que aquele dia faria com que eu voltasse a acreditar que ainda era possível encontrar leveza, paz, carinho e aconchego perto de alguém.",
-      "Depois de tanto tempo acreditando que talvez certas coisas não fossem mais para mim, você apareceu. E, de um jeito que eu nem sei explicar, foi me mostrando que estar perto de alguém não precisava ser pesado, complicado ou assustador.",
-      "E agora já é 7 de outubro.",
-      "Quatro meses depois...",
-      "Quatro meses desde aquele primeiro beijo. E, quando olho para trás, percebo o quanto tanta coisa mudou dentro de mim.",
-      "Não foi apenas sobre aquele dia. Foi sobre tudo o que veio depois.",
-      "As conversas, os encontros, os abraços, as risadas, os momentos simples, as saudades, as descobertas e até as diferenças entre nós.",
-      "Talvez você nem tenha dimensão do quanto esses quatro meses significaram para mim.",
-      "E talvez seja justamente por isso que eu precisava escrever esta carta.",
-      "Porque a verdade é que eu não gosto muito de escrever. 😂 Então, preferi fazer isso do meu jeito, usando a tecnologia — que é uma das poucas coisas nesta vida que posso dizer que sei fazer bem.",
-      "Pois bem...",
-      "Eu só queria te dizer que você é muito importante para mim.",
-      "Eu poderia escrever várias páginas, listar inúmeros motivos, lembrar de cada momento, cada conversa, cada abraço... e, ainda assim, provavelmente faltariam palavras para explicar o que você significa para mim.",
-      "Eu sei que você não é tão intenso quanto eu. E talvez esse seja justamente um dos nossos contrastes. Eu sou assim: não sei sentir pela metade, não sei viver no “mais ou menos”. Quando alguém se torna importante para mim, eu demonstro. Com palavras, com cuidado, com presença e, principalmente, com gestos concretos — até onde você me permitir ir.",
-      "E eu também quero te pedir desculpas.",
-      "Desculpa pelas vezes em que a minha intensidade não conseguiu compreender o seu jeito. Pelas vezes em que eu quis sentir, falar ou viver tudo de uma vez, enquanto você precisava do seu próprio tempo.",
-      "Eu não sou perfeita. Longe disso.",
-      "Mas tudo o que sinto por você é verdadeiro.",
-      "E o sentimento, tenho certeza, não partiu somente de mim. Eu sinto o seu cuidado, eu sinto o seu carinho por mim, eu sinto que você também gosta de mim.",
-      "E tem uma coisa que eu preciso te dizer...",
-      "A verdade é que nós nunca rotulamos nada. A vida simplesmente foi acontecendo. Um momento levou ao outro, os dias foram passando, fomos nos aproximando, vivendo coisas, criando nossas próprias histórias... e, quando percebemos, já existia algo aqui que não cabia tão facilmente em uma palavra.",
-      "Só que chega um momento em que algumas perguntas começam a aparecer.",
-      "Quem somos? O que temos?",
-      "E talvez eu esteja escrevendo tudo isso justamente porque chegou o momento de perguntar.",
-      "Eu não quero te pressionar a ter respostas prontas. Não quero transformar o que vivemos em uma cobrança. Mas quero abrir o meu coração e te dizer o que eu desejo.",
-      "Posso fazer parte da sua vida de verdade daqui para frente?",
-      "Posso fazer parte da sua rotina? Dos seus momentos de distração, dos seus dias bons e dos dias difíceis? Posso estar presente nas pequenas coisas, nos planos, nas viagens, nas risadas e até naqueles momentos em que simplesmente não fazemos nada?",
-      "Posso ter um espaço de verdade na sua vida?",
-      "E, principalmente, posso viver isso com você de forma inteira, sem precisar esconder o que somos ou diminuir aquilo que construímos?",
-      "Quero poder assumir, diante de todos, o quanto foi bonito o que a gente conseguiu construir até aqui. Não porque precisamos provar alguma coisa para alguém, mas porque aquilo que é importante para mim merece também ter um lugar verdadeiro na minha vida — e, se você quiser, na sua.",
-      "Você chegou de um jeito simples e, sem pedir licença, foi ocupando um espaço enorme dentro de mim. Virou motivo para sorrisos bobos, pensamentos inesperados e uma vontade enorme de compartilhar a vida.",
-      "Cada abraço seu parece deixar o dia um pouco mais leve. Cada risada boba vira lembrança. Cada momento ao seu lado ganha um significado diferente.",
-      "E talvez seja isso que eu mais gosto: não precisar de grandes acontecimentos para ser feliz com você. Às vezes, basta estar perto.",
-      "Se eu pudesse pedir alguma coisa ao futuro, pediria mais momentos ao seu lado.",
-      "Mais conversas.<br>Mais risadas.<br>Mais planos.<br>Mais viagens<br>Mais aventuras.<br>Mais “a gente”.",
-      "E, principalmente, mais liberdade para continuar descobrindo até onde a vida pode nos levar.",
+      "Talvez você esteja começando a ler esta carta em um dia corrido, no trabalho, lá no alto, na roça com pouco sinal, em casa ao lado do seu filho ou até já quase dormindo. A verdade é que espero que você leia até o final e, se for preciso, leia mais de uma vez. Porque talvez eu não consiga falar tudo isso pessoalmente, então resolvi escrever.",
+      "Dia 07 de junho de 2026. Um domingo qualquer, e eu mal sabia que aquele dia mudaria tanto a minha cabeça. Eu não imaginava que aquele dia faria com que eu voltasse a acreditar que ainda existem pessoas boas, que estar perto de alguém não precisava ser pesado ou complicado e que era possível encontrar leveza, paz, carinho e aconchego ao lado de alguém.",
+      "Depois de tanto tempo acreditando que talvez certas coisas não fossem mais para mim, você apareceu.",
+      "E hoje já é 07 de outubro. Quatro meses se passaram desde aquele primeiro beijo.",
+      "Quando olho para trás, percebo que não foi apenas aquele dia que fez diferença. Foi tudo o que veio depois: as conversas, os encontros, os abraços, as risadas, os momentos simples, as saudades, as descobertas e até as nossas diferenças. Talvez você nem tenha dimensão do quanto esses quatro meses significaram para mim.",
+      "Foi por isso que eu quis escrever esta carta. Ela poderia ter sido feita à mão, como antigamente, mas eu não sou muito de escrever e a minha profissão acabou me fazendo perder um pouco esse hábito. Então achei mais fácil digitar e, como gosto de inventar alguma coisa diferente usando tecnologia, resolvi fazer do meu jeito.",
+      "Eu só queria te dizer o quanto você se tornou importante para mim. Poderia escrever várias páginas e lembrar de inúmeros momentos, conversas e abraços, mas ainda assim talvez não conseguisse explicar exatamente o que você significa para mim.",
+      "Eu sei que você não é tão intenso quanto eu, e talvez essa seja uma das nossas maiores diferenças. Eu não sei sentir pela metade. Quando alguém se torna importante para mim, eu demonstro, seja através de palavras, cuidado, presença ou gestos. Esse é o meu jeito de gostar de alguém.",
+      "Mas também sei que, algumas vezes, a minha intensidade não conseguiu compreender o seu jeito. Por isso, quero te pedir desculpas pelas vezes em que eu quis sentir, falar ou viver tudo de uma vez, enquanto você precisava do seu próprio tempo.",
+      "Também quero pedir desculpas pelas vezes em que a minha insegurança falou mais alto. Quando você para de falar comigo no WhatsApp ou simplesmente some sem que eu entenda o motivo, isso me deixa triste e preocupada. Eu fico querendo saber se aconteceu alguma coisa, se você está bem ou se fiz algo que te incomodou.",
+      "E, sendo sincera, às vezes minha cabeça vai além e eu começo a pensar se você conheceu outra pessoa ou se existe alguma coisa acontecendo que eu não sei. Sei que isso também é uma insegurança minha e reconheço que nem sempre reajo da melhor forma.",
+      "Se em algum momento falei ou fiz alguma coisa que você não gostou, me perdoa.",
+      "Eu reconheço os meus erros, mas também acho que você sabe que tem esse seu jeito mais fechado e esse orgulho que muitas vezes faz você fugir de conversas que poderiam resolver muita coisa. Não digo isso para brigar com você, mas porque depois desses quatro meses acho que já conseguimos conhecer um pouco um ao outro.",
+      "Eu não sou perfeita, longe disso. Mas tudo o que sinto por você é verdadeiro. E acredito que esse sentimento não existe somente da minha parte. Eu sinto seu carinho, seu cuidado e a maneira como você também gosta de mim, mesmo que demonstre de uma forma diferente da minha.",
+      "Nós nunca colocamos um rótulo no que temos. A vida simplesmente foi acontecendo. Fomos ficando juntos, nos aproximando, compartilhando momentos e criando nossas próprias histórias. Quando percebemos, já existia alguma coisa entre nós que não era tão simples de explicar.",
+      "Eu sempre respeitei o fato de você dizer que não gosta de rótulos e espero que, mesmo sem um rótulo, você também tenha me respeitado nesse período. Porque, para mim, o que vivemos nunca foi algo casual. Eu vivi esses quatro meses como alguém que estava em um relacionamento com você, mesmo sem oficialmente ser sua namorada. E justamente por isso, espero que você tenha tido comigo a mesma consideração que eu tive com você e que não tenha ficado com outras pessoas nesse período.",
+      "Acho que é justamente porque tudo foi acontecendo dessa forma que, depois de quatro meses, algumas perguntas começaram a aparecer dentro de mim.",
+      "Quem somos? O que temos? O que queremos daqui para frente?",
+      "Não estou escrevendo isso para te pressionar a ter respostas prontas, nem quero transformar o que vivemos em uma cobrança. Só sinto que chegou um momento em que preciso ser sincera sobre aquilo que eu desejo.",
+      "Eu quero saber se posso fazer parte da sua vida de verdade daqui para frente. Se posso fazer parte da sua rotina, dos seus momentos de distração, dos seus dias bons e também dos dias difíceis. Quero poder estar presente nas pequenas coisas, nos planos, nas viagens, nas risadas e até naqueles momentos em que simplesmente não fazemos nada.",
+      "Quero saber se posso ter um espaço de verdade na sua vida.",
+      "E, principalmente, se podemos viver isso de forma inteira, sem precisar esconder o que somos ou diminuir aquilo que construímos nesses quatro meses.",
+      "Eu gostaria de poder assumir diante das pessoas o quanto foi bonito o que conseguimos construir até aqui. Não para provar nada a ninguém, mas porque aquilo que é importante para mim merece também ter um lugar verdadeiro na minha vida. E, se você quiser, na sua.",
+      "Você chegou de um jeito simples e acabou ocupando um espaço enorme dentro de mim. Trouxe de volta uma vontade que eu achava que já tinha perdido: a vontade de compartilhar a vida com alguém.",
+      "Gosto dos momentos que temos juntos, mesmo quando não estamos fazendo nada de especial. Gosto das nossas conversas, das nossas risadas, dos abraços e até das diferenças que existem entre nós. Acho que tudo isso fez esses quatro meses serem importantes para mim.",
+      "Se eu pudesse escolher o que quero para os próximos meses, pediria mais momentos ao seu lado, mais conversas, mais viagens, mais aventuras e mais histórias para a gente lembrar.",
+      "Quero continuar descobrindo você e descobrir também até onde essa história pode chegar.",
       "Porque, se depender de mim, ainda quero viver muitos capítulos dessa história.",
       "E quem sabe alguns deles sejam literalmente nas alturas... 🪂❤️",
-      "Alguém já disse que te ama hoje?",
-      "Te amoo, Obrigada por tudo até aqui."
+      "Te amo, menino do gênio difícil.",
+      "Obrigada por tudo até aqui, pelos quatro meses e por tudo o que você despertou em mim."
     ],
     closing: "Com carinho,",
     from: "Andréia Romanel ❤️"
